@@ -1,0 +1,17 @@
+Test
+-Name (Unique)
+-Owner
+-Test_Runs (Multiple Test_Runs for each Test)
+
+Test_Run
+-Id
+-Timestamp
+-Status (Pass, Fail)
+-Test_Name
+-Automation_Run (One-To-Many)
+
+Automation_Run
+-Id
+-Date
+-Setup (Operating System)
+-Test_Runs (Multiple Test_Runs for each Automation_Run)
