@@ -1,10 +1,9 @@
 class AutomationRun
-    def initialize(id, timestamp, os, buildNumber)
-        @id = id
+    def initialize(timestamp, os, buildNumber)
         @timestamp = timestamp
         @os = os
         @buildNumber
     end
 
-    attr_reader :id, :timestamp, :os, :buildNumber
+    attr_reader :timestamp, :os, :buildNumber
 end
