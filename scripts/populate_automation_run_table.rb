@@ -7,7 +7,8 @@ osValues = ["RHEL6.10", "RHEL7.4", "RHEL7.5", "SLES12SP3", "SLES12SP4", "SLES15"
 buildNumberValues = [55,56,57,58,59,60,61]
 
 def createTimestamp
-    return time.now.to_i
+    now = Time.now.to_i
+    return now.to_s
 end
 
 #Create an automation_run:
@@ -19,10 +20,15 @@ automationRun = AutomationRun.new(timestamp, os, buildNumber)
 #Insert automation_run into db:
 pgConn = MyPgConnect.new
 conn = pgConn.connect
-conn.prepare 'stm', "INSERT INTO automation_run (timestamp, os, build_number) VALUES ($1, $2, $3);"
-conn.exec_prepared 'stm', [automationRun.timestamp, automationRun.os, automationRun.buildNumber]
 
-#Create test_runs:
-
-
-#Insert test_runs into db:
+begin
+    conn.prepare 'stm', "INSERT INTO automation_run (timestamp, os, build_number) VALUES ($1, $2, $3);"
+    puts "Executing statement..."
+    res = conn.exec_prepared 'stm', [automationRun.timestamp, automationRun.os, automationRun.buildNumber]
+rescue PG::Error => e
+    puts e.message
+ensure
+    puts "Result Status:" + res.result_status.to_s if res
+    conn.close
+    puts "Connection closed."
+end

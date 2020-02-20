@@ -22,7 +22,7 @@ def createRandomName table
 end
 
 testNames = []
-for i in 0..5000
+for i in 0..800
     name = createRandomName table
     suffix = testSuffixes.sample
     testName = name + suffix
