@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_21_031612) do
+ActiveRecord::Schema.define(version: 2020_02_21_032808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_031612) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "owner"
     t.string "name"
+    t.index ["name"], name: "index_tests_on_name", unique: true
   end
 
   add_foreign_key "test_runs", "tests"
