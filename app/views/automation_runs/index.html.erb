@@ -1,0 +1,18 @@
+<h1>Listing Automation Runs</h1>
+ 
+<table>
+  <tr>
+    <th>Timestamp</th>
+    <th>Operating System</th>
+    <th>Build Number</th>
+  </tr>
+ 
+  <% @automationRuns.each do |automationRun| %>
+    <tr>
+      <td><%= automationRun.timestamp %></td>
+      <td><%= automationRun.os %></td>
+      <td><%= automationRun.build_number %></td>
+      <td><%= link_to 'Show', automation_run_path(automationRun) %></td>
+    </tr>
+  <% end %>
+</table>
