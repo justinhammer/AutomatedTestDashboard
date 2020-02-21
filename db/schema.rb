@@ -16,16 +16,12 @@ ActiveRecord::Schema.define(version: 2020_02_21_035914) do
   enable_extension "plpgsql"
 
   create_table "automation_runs", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "timestamp", null: false
     t.string "os", null: false
     t.integer "build_number", null: false
   end
 
   create_table "test_runs", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "timestamp", null: false
     t.string "status", null: false
     t.bigint "test_id"
@@ -35,8 +31,6 @@ ActiveRecord::Schema.define(version: 2020_02_21_035914) do
   end
 
   create_table "tests", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "owner", null: false
     t.string "name", null: false
     t.index ["name"], name: "index_tests_on_name", unique: true
