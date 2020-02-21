@@ -20,7 +20,7 @@ pgConn = MyPgConnect.new
 conn = pgConn.connect
 
 begin
-    conn.prepare 'stm', "INSERT INTO automation_run (timestamp, os, build_number) VALUES ($1, $2, $3);"
+    conn.prepare 'stm', "INSERT INTO automation_runs (timestamp, os, build_number) VALUES ($1, $2, $3);"
     puts "Executing statement..."
     res = conn.exec_prepared 'stm', [automationRun.timestamp, automationRun.os, automationRun.buildNumber]
 rescue PG::Error => e
