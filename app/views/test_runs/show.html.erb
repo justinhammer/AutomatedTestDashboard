@@ -8,4 +8,10 @@
     <%= @test_run.status %>
 </p>
 
-<%= link_to 'Back', test_runs_path %>
+<p>
+    <strong>Test Id:</strong>
+    <%= link_to @test_run.test_id, test_path(@test_run.test_id) %>
+</p>
+
+
+<%= link_to "Back", :back %>
