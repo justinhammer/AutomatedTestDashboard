@@ -1,0 +1,2 @@
+class AutomationRunsController < ApplicationController
+end

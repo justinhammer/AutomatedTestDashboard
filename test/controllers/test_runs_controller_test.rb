@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class AutomationRunControllerTest < ActionDispatch::IntegrationTest
+class TestRunsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

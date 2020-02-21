@@ -1,2 +1,0 @@
-class AutomationRunController < ApplicationController
-end
