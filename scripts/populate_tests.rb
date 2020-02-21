@@ -10,7 +10,10 @@ testSuffixes = [
     "GetsLostInSpace", 
     "GainsFlying", 
     "SavesTheWorld",
-    "CreatesANeverEndingTimeLoop"   
+    "CreatesANeverEndingTimeLoop",
+    "GetsVaporizedBySuperman",
+    "AdoptsAStrayDog",
+    "AchievesUniversalPeace"
 ]
 table = CSV.parse(File.read("../lib/superheros.csv"), headers: true)
 
@@ -42,7 +45,7 @@ end
 #Insert Test Names and Owners Into Test Table:
 pgConn = MyPgConnect.new
 conn = pgConn.connect
-conn.prepare 'stm', "INSERT INTO Test (name, owner) VALUES ($1, $2);"
+conn.prepare 'stm', "INSERT INTO tests (name, owner) VALUES ($1, $2);"
 for testName in testNames
     testOwner = testOwners.sample
     conn.exec_prepared 'stm', [testName, testOwner]
