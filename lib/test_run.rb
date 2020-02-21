@@ -1,10 +1,10 @@
 class TestRun
-    def initialize(id, timestamp, status, testName, automationRun)
+    def initialize(timestamp, status, testName, automationRunId)
         @timestamp = timestamp
         @status = status
         @testName = testName
-        @automationRun = automationRun
+        @automationRunId = automationRunId
     end
 
-    attr_reader :timestamp, :status, :testName, :automationRun
+    attr_reader :timestamp, :status, :testName, :automationRunId
 end
