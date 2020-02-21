@@ -1,2 +1,3 @@
 class AutomationRun < ApplicationRecord
+    
 end
