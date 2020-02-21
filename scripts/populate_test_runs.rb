@@ -3,8 +3,8 @@ require '../lib/my_pg_connect'
 require '../lib/test_run'
 
 testStatusValues = ["pass", "pass", "pass", "pass", "pass", "pass", "pass", "pass", "pass", "fail", "fail", "skip"]
-nameQuery = "SELECT name FROM Test;"
-automationRunQuery = "SELECT id FROM automation_run ORDER BY timestamp DESC LIMIT 1;"
+idQuery = "SELECT id FROM tests;"
+automationRunQuery = "SELECT id FROM automation_runs ORDER BY timestamp DESC LIMIT 1;"
 
 def createNanosecondTimestamp
     now = DateTime.now.strftime("%Y%m%d%H%M%6N")
@@ -12,12 +12,12 @@ def createNanosecondTimestamp
 end
 
 #Retrieve testNames:
-testNames = []
+testIds = []
 
 begin
     pgConn = MyPgConnect.new
     conn = pgConn.connect
-    results = conn.exec(nameQuery)
+    results = conn.exec(idQuery)
     puts "Executing query..."
 rescue PG::Error => e
     puts e.message
@@ -25,7 +25,7 @@ ensure
     if results
         puts "Retrieved results!"
         results.each do |res|
-            testNames<<res["name"]
+            testIds<<res["id"]
         end
     end
 
@@ -55,10 +55,10 @@ end
 
 #Create TestRuns:
 testRuns = []
-testNames.each do |name|
+testIds.each do |testId|
     timestamp = createNanosecondTimestamp
     status = testStatusValues.sample
-    testRun = TestRun.new(timestamp, status, name, automationRunId)
+    testRun = TestRun.new(timestamp, status, testId, automationRunId)
     testRuns<<testRun
 end
 
@@ -68,9 +68,9 @@ testRuns.each do |testRun|
     conn = pgConn.connect
 
     begin
-        conn.prepare 'stm', "INSERT INTO test_run (timestamp, status, test_name, automation_run) VALUES ($1, $2, $3, $4);"
+        conn.prepare 'stm', "INSERT INTO test_runs (timestamp, status, test_id, automation_runs_id) VALUES ($1, $2, $3, $4);"
         puts "Executing statement..."
-        res = conn.exec_prepared 'stm', [testRun.timestamp, testRun.status, testRun.testName, testRun.automationRunId]
+        res = conn.exec_prepared 'stm', [testRun.timestamp, testRun.status, testRun.testId, testRun.automationRunId]
     rescue PG::Error => e
         puts e.message
     ensure
