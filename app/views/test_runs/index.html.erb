@@ -1,0 +1,20 @@
+<h1>Listing Test Runs</h1>
+ 
+<table>
+  <tr>
+    <th>Timestamp</th>
+    <th>Status</th>
+  </tr>
+ 
+  <% @test_runs.each do |test_run| %>
+    <tr>
+      <td><%= test_run.timestamp %></td>
+      <td><%= test_run.status %></td>
+      <td><%= link_to 'Show', test_run_path(test_run) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p>
+  <%= link_to 'Dashboard', controller: 'dashboard' %>
+</p>
