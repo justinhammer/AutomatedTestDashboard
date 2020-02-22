@@ -5,12 +5,14 @@ class DashboardController < ApplicationController
     passHash = Hash.new
     @lastSixAutomationRuns.each do |automationRun|
       id = automationRun.id
-      passes = TestRun.where(status: 'pass', automation_runs_id: id).count
-      fails = TestRun.where(status: 'fail', automation_runs_id: id).count
-      skips = TestRun.where(status: 'skip', automation_runs_id: id).count
+      stats = TestRun.select(:status).where(automation_runs_id: id)
+      passHash[id] = stats
+      
+      passes = passHash[id].count { |element| element["status"].match(/pass/) }
+      fails = passHash[id].count { |element| element["status"].match(/fail/) }
+      skips = passHash[id].count { |element| element["status"].match(/skip/) }
       passHash[id] = [passes, fails, skips]
     end
-    puts passHash
     @testsPassed = passHash
   end
 end
