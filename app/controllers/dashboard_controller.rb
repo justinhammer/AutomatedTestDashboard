@@ -1,7 +1,9 @@
 class DashboardController < ApplicationController
   def index
+    # Get latest six automation rows to display on Dashboard:
     @lastSixAutomationRuns = AutomationRun.order(id: :desc).first(6)
     
+    # Get test status information for each of the latest 6 automation runs:
     passHash = Hash.new
     @lastSixAutomationRuns.each do |automationRun|
       id = automationRun.id
