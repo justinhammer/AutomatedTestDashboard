@@ -1,5 +1,18 @@
-<h1>Dashboard</h1>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link" href="<%= automation_runs_path %>">Automation Runs</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="<%= tests_path %>">Tests</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="<%= test_runs_path %>">Test Runs</a>
+        
+    </li>
+  </ul>
+</nav>
 
-<%= link_to 'Automation Runs', controller: 'automation_runs' %>
-<%= link_to 'Tests', controller: 'tests' %>
-<%= link_to 'Test Runs', controller: 'test_runs' %>
+<div class="jumbotron text-center">
+  <h1>Dashboard</h1>
+</div>
