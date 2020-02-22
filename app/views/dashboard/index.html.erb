@@ -15,4 +15,31 @@
 
 <div class="jumbotron text-center">
   <h1>Dashboard</h1>
+  <p>Quick links to the last 6 automation runs are displayed below.</p>
+</div>
+
+<div class="container">
+    <%= @lastSixAutomationRuns.each_slice(3) do |lastSixAutomationRuns| %>
+        <div class="row">
+            <% lastSixAutomationRuns.each do |automationRun| %>
+                <div class="card col-md text-center">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <a class="nav-link stretched-link" href="<%= automation_run_path(automationRun) %>">
+                                <strong>Automation Run <%= automationRun.id %></strong>
+                            </a>
+                        </div>
+                        <p>Timestamp: <%= automationRun.timestamp %></p>
+                        <p>Operating System: <%= automationRun.os %></p>
+                        <p>Build Number: <%= automationRun.build_number %></p>
+                        <span>
+                            <li>Tests Passed: <%= @testsPassed[automationRun.id][0] %></li>
+                            <li>Tests Failed: <%= @testsPassed[automationRun.id][1] %></li>
+                            <li>Tests Skipped: <%= @testsPassed[automationRun.id][2] %></li>
+                        </span>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    <% end %>
 </div>
