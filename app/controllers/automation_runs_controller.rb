@@ -1,6 +1,6 @@
 class AutomationRunsController < ApplicationController
     def index
-        @automationRuns = AutomationRun.all
+        @automationRuns = AutomationRun.all.page params[:page]
     end
     
     def show

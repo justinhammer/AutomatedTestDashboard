@@ -1,6 +1,6 @@
 class TestRunsController < ApplicationController
     def index
-        @test_runs = TestRun.all
+        @test_runs = TestRun.all.page params[:page]
     end
     
     def show

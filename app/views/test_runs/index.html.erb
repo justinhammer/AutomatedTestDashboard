@@ -1,20 +1,24 @@
-<h1>Listing Test Runs</h1>
- 
-<table>
-  <tr>
-    <th>Timestamp</th>
-    <th>Status</th>
-  </tr>
- 
-  <% @test_runs.each do |test_run| %>
+<div class="container-fluid">
+  <h1>Test Runs</h1>
+  <%= paginate @test_runs, theme: 'twitter-bootstrap-4', window: 1, pagination_class: "pagination-sm"%>
+  <table class="text-left">
     <tr>
-      <td><%= test_run.timestamp %></td>
-      <td><%= test_run.status %></td>
-      <td><%= link_to 'Show', test_run_path(test_run) %></td>
+      <th>Id</th>
+      <th>Status</th>
+      <th>Timestamp</th>
     </tr>
-  <% end %>
-</table>
-
-<p>
-  <%= link_to 'Dashboard', controller: 'dashboard' %>
-</p>
+   
+  
+    <% @test_runs.each do |test_run| %>
+      <tr>
+        <td>
+          <a class="nav-link" href="<%= test_run_path(test_run) %>">
+            <%= test_run.id %>
+          </a>
+        </td>
+        <td><%= test_run.status %></td>
+        <td><%= test_run.timestamp %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

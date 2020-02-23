@@ -1,20 +1,23 @@
-<h1>Listing Tests</h1>
- 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Owner</th>
-  </tr>
- 
-  <% @tests.each do |test| %>
+<div class="container-fluid">
+  <h1>Tests</h1>
+  <%= paginate @tests, theme: 'twitter-bootstrap-4', window: 1, pagination_class: "pagination-sm"%>
+  <table>
     <tr>
-      <td><%= test.name %></td>
-      <td><%= test.owner %></td>
-      <td><%= link_to 'Show', test_path(test) %></td>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Owner</th>
     </tr>
-  <% end %>
-</table>
-
-<p>
-  <%= link_to 'Dashboard', controller: 'dashboard' %>
-</p>
+   
+    <% @tests.each do |test| %>
+      <tr>
+        <td>
+          <a class="nav-link" href="<%= test_path(test) %>">
+            <%= test.id %>
+          </a>
+        </td>
+        <td><%= test.name %></td>
+        <td><%= test.owner %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

@@ -25,6 +25,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootstrap', '~> 4.3.1'
 gem 'font_awesome5_rails'
 gem 'chartkick'
+gem 'kaminari'
+gem 'bootstrap4-kaminari-views'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

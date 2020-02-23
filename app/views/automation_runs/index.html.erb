@@ -1,7 +1,8 @@
-<h1>Listing Automation Runs</h1>
- 
+<h1>Automation Runs</h1>
+<%= paginate @automationRuns, theme: 'twitter-bootstrap-4', window: 1, pagination_class: "pagination-sm"%>
 <table>
   <tr>
+    <th>Id</th>
     <th>Timestamp</th>
     <th>Operating System</th>
     <th>Build Number</th>
@@ -9,14 +10,14 @@
  
   <% @automationRuns.each do |automationRun| %>
     <tr>
+      <td>
+        <a class="nav-link" href="<% automation_run_path(automationRun) %>">
+          <%= automationRun.id %>
+        </a>
+      </td>
       <td><%= automationRun.timestamp %></td>
       <td><%= automationRun.os %></td>
       <td><%= automationRun.build_number %></td>
-      <td><%= link_to 'Show', automation_run_path(automationRun) %></td>
     </tr>
   <% end %>
 </table>
-
-<p>
-  <%= link_to 'Dashboard', controller: 'dashboard' %>
-</p>
