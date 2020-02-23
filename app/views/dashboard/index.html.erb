@@ -1,21 +1,6 @@
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <ul class="navbar-nav">
-    <li class="nav-item">
-        <a class="nav-link" href="<%= automation_runs_path %>">Automation Runs</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="<%= tests_path %>">Tests</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="<%= test_runs_path %>">Test Runs</a>
-        
-    </li>
-  </ul>
-</nav>
-
 <div class="jumbotron text-center">
   <h1>Dashboard</h1>
-  <p>Quick links to the last 6 automation runs are displayed below.</p>
+  <p>Information about the latest automation runs is displayed below.</p>
 </div>
 
 <div class="container">
@@ -25,18 +10,22 @@
                 <div class="card col-md text-center">
                     <div class="card-body">
                         <div class="card-title">
-                            <a class="nav-link stretched-link" href="<%= automation_run_path(automationRun) %>">
-                                <strong>Automation Run <%= automationRun.id %></strong>
+                            <a class="nav-link" href="<%= automation_run_path(automationRun) %>">
+                                <h4>Automation Run <%= automationRun.id %></h4>
+                                <hr />
                             </a>
                         </div>
-                        <p>Timestamp: <%= automationRun.timestamp %></p>
-                        <p>Operating System: <%= automationRun.os %></p>
-                        <p>Build Number: <%= automationRun.build_number %></p>
                         <span>
-                            <li>Tests Passed: <%= @testsPassed[automationRun.id][0] %></li>
-                            <li>Tests Failed: <%= @testsPassed[automationRun.id][1] %></li>
-                            <li>Tests Skipped: <%= @testsPassed[automationRun.id][2] %></li>
+                            <%= pie_chart(@testStatuses[automationRun.id], donut: true, legend: false) %>
                         </span>
+                        <br />
+                        <div class="card-text">
+                            <p>
+                                Timestamp: <%= automationRun.timestamp %> <br />
+                                Operating System: <%= automationRun.os %> <br />
+                                Build Number: <%= automationRun.build_number %>
+                            </p>
+                        </div>
                     </div>
                 </div>
             <% end %>

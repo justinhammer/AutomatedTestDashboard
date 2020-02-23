@@ -13,8 +13,11 @@ class DashboardController < ApplicationController
       passes = passHash[id].count { |element| element["status"].match(/pass/) }
       fails = passHash[id].count { |element| element["status"].match(/fail/) }
       skips = passHash[id].count { |element| element["status"].match(/skip/) }
-      passHash[id] = [passes, fails, skips]
+
+      
+
+      passHash[id] = {"passes" => passes, "fails" => fails, "skips" => skips}
     end
-    @testsPassed = passHash
+    @testStatuses = passHash
   end
 end
