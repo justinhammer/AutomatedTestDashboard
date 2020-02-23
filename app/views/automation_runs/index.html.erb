@@ -1,23 +1,32 @@
-<h1>Automation Runs</h1>
-<%= paginate @automationRuns, theme: 'twitter-bootstrap-4', window: 1, pagination_class: "pagination-sm"%>
-<table>
-  <tr>
-    <th>Id</th>
-    <th>Timestamp</th>
-    <th>Operating System</th>
-    <th>Build Number</th>
-  </tr>
- 
-  <% @automationRuns.each do |automationRun| %>
-    <tr>
-      <td>
-        <a class="nav-link" href="<% automation_run_path(automationRun) %>">
-          <%= automationRun.id %>
-        </a>
-      </td>
-      <td><%= automationRun.timestamp %></td>
-      <td><%= automationRun.os %></td>
-      <td><%= automationRun.build_number %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="container-fluid">
+  <h1>Automation Runs</h1>
+  <hr />
+  <%= paginate @automationRuns, theme: 'twitter-bootstrap-4', window: 1, pagination_class: "pagination-sm"%>
+    <div class="row">
+      <div class="col-sm-2">
+        <strong>Id</strong>
+      </div>
+      <div class="col-sm">
+        <strong>Timestamp</strong>
+      </div>
+      <div class="col-sm">
+        <strong>Operating System</strong>
+      </div>
+      <div class="col-sm">
+        <strong>Build Number</strong>
+      </div>
+    </div>
+   
+    <% @automationRuns.each do |automationRun| %>
+      <div class="row">
+        <div class=col-sm-2>
+          <a href="<% automation_runs_path(automationRun) %>">
+            <%= automationRun.id %>
+          </a>
+        </div>
+        <div class=col-sm><%= automationRun.timestamp %></div>
+        <div class=col-sm><%= automationRun.os %></div>
+        <div class=col-sm><%= automationRun.build_number %></div>
+      </div>
+    <% end %>
+</div>

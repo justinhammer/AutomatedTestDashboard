@@ -1,23 +1,30 @@
 <div class="container-fluid">
   <h1>Tests</h1>
+  <hr />
   <%= paginate @tests, theme: 'twitter-bootstrap-4', window: 1, pagination_class: "pagination-sm"%>
-  <table>
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Owner</th>
-    </tr>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-1">
+        <strong>Id</strong>
+      </div>
+      <div class="col-sm">
+        <strong>Test Name</strong>
+      </div>
+      <div class="col-sm">
+        <strong>Owner</strong>
+      </div>
+    </div>
    
     <% @tests.each do |test| %>
-      <tr>
-        <td>
-          <a class="nav-link" href="<%= test_path(test) %>">
+      <div class="row">
+        <div class="col-sm-1">
+          <a href="<%= test_path(test) %>">
             <%= test.id %>
           </a>
-        </td>
-        <td><%= test.name %></td>
-        <td><%= test.owner %></td>
-      </tr>
+        </div>
+        <div class="col-sm"><%= test.name %></div>
+        <div class="col-sm"><%= test.owner %></div>
+      </div>
     <% end %>
-  </table>
+  </div>
 </div>

@@ -1,24 +1,31 @@
 <div class="container-fluid">
   <h1>Test Runs</h1>
+  <hr />
   <%= paginate @test_runs, theme: 'twitter-bootstrap-4', window: 1, pagination_class: "pagination-sm"%>
-  <table class="text-left">
-    <tr>
-      <th>Id</th>
-      <th>Status</th>
-      <th>Timestamp</th>
-    </tr>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-1">
+        <strong>Id</strong>
+      </div>
+      <div class="col-sm-3">
+        <strong>Status</strong>
+      </div>
+      <div class="col-sm">
+        <strong>Timestamp</strong>
+      </div>
+    </div>
    
   
     <% @test_runs.each do |test_run| %>
-      <tr>
-        <td>
-          <a class="nav-link" href="<%= test_run_path(test_run) %>">
+      <div class="row">
+        <div class="col-sm-1 text-left">
+          <a href="<%= test_run_path(test_run) %>">
             <%= test_run.id %>
           </a>
-        </td>
-        <td><%= test_run.status %></td>
-        <td><%= test_run.timestamp %></td>
-      </tr>
+        </div>
+        <div class="col-sm-3"><%= test_run.status %></div>
+        <div class="col-sm"><%= test_run.timestamp %></div>
+      </div>
     <% end %>
-  </table>
+  </div>
 </div>
