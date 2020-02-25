@@ -1,6 +1,7 @@
 <div class="jumbotron text-center">
-  <h1>Dashboard</h1>
-  <p>Information about the latest automation runs:</p>
+    <h1>Dashboard</h1>
+    <p>Information about the latest automation runs</p>
+    <%= button_to "Start New Automation Run", automation_runs_path, class:"btn btn-primary", method: :post %>
 </div>
 
 <div class="container">

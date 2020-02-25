@@ -1,5 +1,5 @@
-require '../lib/automation_run'
-require '../lib/my_pg_connect'
+require_relative '../lib/automation_run'
+require_relative '../lib/my_pg_connect'
 
 osValues = ["RHEL6.10", "RHEL7.4", "RHEL7.5", "SLES12SP3", "SLES12SP4", "SLES15"]
 buildNumberValues = [55,56,57,58,59,60,61]

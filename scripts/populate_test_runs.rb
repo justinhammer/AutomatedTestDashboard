@@ -1,6 +1,6 @@
 require 'date'
-require '../lib/my_pg_connect'
-require '../lib/test_run'
+require_relative '../lib/my_pg_connect'
+require_relative '../lib/test_run'
 
 testStatusValues = ["pass", "pass", "pass", "pass", "pass", "pass", "pass", "pass", "pass", "fail", "fail", "skip"]
 idQuery = "SELECT id FROM tests;"

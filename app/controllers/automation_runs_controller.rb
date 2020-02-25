@@ -6,4 +6,13 @@ class AutomationRunsController < ApplicationController
     def show
         @automationRun = AutomationRun.find(params[:id])
     end
+
+    def create
+        puts "Hitting create method"
+        if system('ruby scripts/populate_automation_runs.rb')
+            puts "Automation Run Created Successfully!"
+            system('ruby scripts/populate_test_runs.rb')
+        end
+        redirect_to dashboard_index_path
+      end
 end
