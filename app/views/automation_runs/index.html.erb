@@ -2,8 +2,9 @@
   <h1>Automation Runs</h1>
   <hr />
   <%= paginate @automationRuns, theme: 'twitter-bootstrap-4', window: 1, pagination_class: "pagination-sm"%>
+  <div class="container">
     <div class="row">
-      <div class="col-sm-2">
+      <div class="col-sm-1">
         <strong>Id</strong>
       </div>
       <div class="col-sm">
@@ -19,8 +20,8 @@
    
     <% @automationRuns.each do |automationRun| %>
       <div class="row">
-        <div class=col-sm-2>
-          <a href="<% automation_runs_path(automationRun) %>">
+        <div class=col-sm-1>
+          <a href="<%= automation_run_path(automationRun) %>">
             <%= automationRun.id %>
           </a>
         </div>
@@ -29,4 +30,5 @@
         <div class=col-sm><%= automationRun.build_number %></div>
       </div>
     <% end %>
+  </div>
 </div>
